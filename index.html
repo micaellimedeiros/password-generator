@@ -8,13 +8,49 @@
 </head>
 
 <body>
-  <h1>Gerador de senha</h1>
+  <h1>Password Generator</h1>
   <p>Utilize nosso gerador online para criar uma senha forte e segura.</p>
 
   <input type="text" id="password" name="password" readonly>
   <input type="range" id="length" name="length" min="8" max="64" value="16">
 
-  <button>Copiar senha</button>
+  <button id="copy">Copiar senha</button>
+
+  <script>
+    let passwordLength = 16;
+
+    const inputElement = document.querySelector("#password");
+    const length = document.querySelector("#length");
+    const copyButtonElement = document.querySelector("#copy");
+
+    function generatePassword() {
+      const chars = 'abcdefghjklmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789!@#$%&*()_+';
+
+      let password = "";
+
+      for (let i = 0; i < passwordLength; i++) {
+        const randomNumber = Math.floor(Math.random() * chars.length);
+
+        password += chars.substring(randomNumber, randomNumber + 1)
+      }
+
+      inputElement.value = password;
+    }
+
+    function copyToClipboard() {
+      navigator.clipboard.writeText(inputElement.value);
+    }
+
+    copyButtonElement.addEventListener("click", copyToClipboard)
+
+    length.addEventListener("input", function () {
+      passwordLength = length.value;
+
+      generatePassword()
+    })
+
+    generatePassword()
+  </script>
 </body>
 
 </html>
