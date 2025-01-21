@@ -1,0 +1,260 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #252525;
+  padding: 2rem;
+  
+  background-color: #f8fafd;
+  font-family: 'Inter', sans-serif;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+main {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.hero {
+  text-align: center;
+  padding-bottom: 3rem;
+}
+
+.hero .title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+
+  font-weight: bold;
+  padding-bottom: 1.5rem;
+}
+
+.hero .subtitle {
+  font-size: 1.25rem;
+  color: #828282;
+}
+
+.box {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(132, 128, 165, 0.2);
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.password {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.password .text {
+  flex: 1;
+}
+
+.password .text input {
+  font-family: "Inconsolata", serif;
+  font-size: 3rem;
+  width: 100%;
+  height: 52px;
+
+  padding: 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.25rem;
+
+  cursor: default;
+
+  outline: none;
+  border: 0;
+  transition: all 0.2s;
+}
+
+.password .actions button {
+  background: #f8fafd;
+  border: 0;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.security {
+  height: 10px;
+  background-color: #ddd;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.security .bar {
+  height: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.security .bar.completed {
+  border-top-right-radius: 0;
+}
+
+.security .bar.critical {
+  background-color: #f44336;
+}
+
+.security .bar.warning {
+  background-color: #ff9800;
+}
+
+.security .bar.safe {
+  background-color: #27ae60;
+}
+
+.customize {
+  padding: 1rem 1.5rem;
+}
+
+.customize .title {
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+.customize .actions {
+  display: flex;
+  gap: 3rem;
+  color: #828282;
+}
+
+.customize .password-length {
+  flex: 1;
+}
+
+.customize .password-length .slider {
+  appearance: none;
+  -webkit-appearance: none;
+
+  height: 10px;
+  background-color: #ddd;
+  outline: none;
+  border-radius: 5px;
+
+  width: 100%;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  margin-top: 1rem;
+}
+
+.customize .password-length .slider:hover {
+  opacity: 1;
+}
+
+.customize .password-length .slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 20px;
+  height: 20px;
+  background-color: #9b51e0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.customize .password-length .slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: #9b51e0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  cursor: pointer;
+}
+
+.checkbox-container .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  transition: all 0.2s;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #9b51e0;
+}
+
+.checkbox-container .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 13px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.submit {
+  text-align: center;
+}
+
+.submit button {
+  background-color: #bb6bd9;
+  font-size: 1.2rem;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+  padding: 1rem 2rem;
+  transition: all 0.2s;
+}
+
+.submit button:hover {
+  background-color: #9b51e0;
+}

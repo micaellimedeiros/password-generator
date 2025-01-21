@@ -4,24 +4,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+
+  <title>Password Generator</title>
 </head>
 
 <body>
-  <h1>Password Generator</h1>
-  <p>Utilize nosso gerador online para criar uma senha forte e segura.</p>
+  <main>
+    <section class="hero">
+      <h1 class="title">Password Generator</h1>
+      <p class="subtitle">Utilize nosso gerador online para criar uma senha forte e segura.</p>
+    </section>
 
-  <input type="text" id="password" name="password" readonly>
-  <input type="range" id="length" name="length" min="8" max="64" value="16">
+    <section class="box">
+      <div class="password">
+        <div class="text">
+          <input type="text" id="password" name="password" readonly>
+        </div>
 
-  <button id="copy">Copiar senha</button>
+        <div class="actions">
+          <button id="copy-1">
+            <img src="copy.png" alt="Copy">
+          </button>
+
+          <button id="refresh">
+            <img src="refresh.png" alt="Refresh">
+          </button>
+        </div>
+      </div>
+
+      <div class="security">
+        <div id="indicator-bar" class="bar" style="width: 90%"></div>
+      </div>
+    </section>
+
+    <section class="box customize">
+      <h3 class="title">Personalizar</h3>
+
+      <div class="actions">
+        <div class="password-length">
+          <p>Tamanho:
+            <span id="password-length-text">16</span>
+          </p>
+          <input type="range" class="slider" id="length" name="length" min="8" max="64" value="16">
+        </div>
+
+        <div class="config">
+          <label class="checkbox-container">
+            <span class="text">Maiúsculas</span>
+            <input type="checkbox" id="uppercase-check">
+            <span class="checkmark"></span>
+          </label>
+
+          <label class="checkbox-container">
+            <span class="text">Numeros</span>
+            <input type="checkbox" id="numbers-check">
+            <span class="checkmark"></span>
+          </label>
+
+          <label class="checkbox-container">
+            <span class="text">Simbolos</span>
+            <input type="checkbox" id="symbols-check">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <div class="submit">
+      <button id="copy-2">Copiar senha</button>
+    </div>
+
+  </main>
 
   <script>
     let passwordLength = 16;
 
     const inputElement = document.querySelector("#password");
     const length = document.querySelector("#length");
-    const copyButtonElement = document.querySelector("#copy");
 
     function generatePassword() {
       const chars = 'abcdefghjklmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789!@#$%&*()_+';
@@ -41,7 +108,8 @@
       navigator.clipboard.writeText(inputElement.value);
     }
 
-    copyButtonElement.addEventListener("click", copyToClipboard)
+    document.querySelector("#copy-1").addEventListener("click", copyToClipboard)
+    document.querySelector("#copy-2").addEventListener("click", copyToClipboard)
 
     length.addEventListener("input", function () {
       passwordLength = length.value;
