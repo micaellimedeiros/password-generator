@@ -90,8 +90,28 @@
     const inputElement = document.querySelector("#password");
     const length = document.querySelector("#length");
 
+    const uppercaseCheck = document.querySelector("#uppercase-check");
+    const numbersCheck = document.querySelector("#numbers-check");
+    const symbolsCheck = document.querySelector("#symbols-check");
+
     function generatePassword() {
-      const chars = 'abcdefghjklmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789!@#$%&*()_+';
+      let chars = 'abcdefghjklmnpqrstuvwxyz';
+
+      const uppercaseChars = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+      const numbersChars = '123456789';
+      const symbolsChars = '!@#$%&*';
+
+      if (uppercaseCheck.checked) {
+        chars += uppercaseChars;
+      }
+
+      if (numbersCheck.checked) {
+        chars += numbersChars;
+      }
+
+      if (symbolsCheck.checked) {
+        chars += symbolsChars;
+      }
 
       let password = "";
 
@@ -113,9 +133,14 @@
 
     length.addEventListener("input", function () {
       passwordLength = length.value;
+      document.querySelector("#password-length-text").textContent = passwordLength;
 
       generatePassword()
     })
+
+    uppercaseCheck.addEventListener("input", generatePassword)
+    numbersCheck.addEventListener("input", generatePassword)
+    symbolsCheck.addEventListener("input", generatePassword)
 
     generatePassword()
   </script>
