@@ -159,8 +159,15 @@
       navigator.clipboard.writeText(inputElement.value);
     }
 
+    function refreshPassword() {
+      generatePassword()
+      calculateFontSize()
+    }
+
     document.querySelector("#copy-1").addEventListener("click", copyToClipboard)
     document.querySelector("#copy-2").addEventListener("click", copyToClipboard)
+
+    document.querySelector("#refresh").addEventListener("click", refreshPassword)
 
     length.addEventListener("input", function () {
       passwordLength = length.value;
