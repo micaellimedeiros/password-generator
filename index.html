@@ -41,7 +41,7 @@
       </div>
 
       <div class="security">
-        <div id="indicator-bar" class="bar" style="width: 90%"></div>
+        <div id="indicator-bar" class="bar critical"></div>
       </div>
     </section>
 
@@ -94,7 +94,10 @@
     const numbersCheck = document.querySelector("#numbers-check");
     const symbolsCheck = document.querySelector("#symbols-check");
 
+    const indicatorBar = document.querySelector("#indicator-bar");
+
     function generatePassword() {
+      let password = "";
       let chars = 'abcdefghjklmnpqrstuvwxyz';
 
       const uppercaseChars = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
@@ -113,8 +116,6 @@
         chars += symbolsChars;
       }
 
-      let password = "";
-
       for (let i = 0; i < passwordLength; i++) {
         const randomNumber = Math.floor(Math.random() * chars.length);
 
@@ -122,6 +123,36 @@
       }
 
       inputElement.value = password;
+      calculateQuality()
+    }
+
+    function calculateQuality() {
+      const percentage = Math.round(
+        (passwordLength / 64) * 25 +
+        (uppercaseCheck.checked ? 15 : 0) +
+        (numbersCheck.checked ? 25 : 0) +
+        (symbolsCheck.checked ? 35 : 0)
+      );
+
+      indicatorBar.style.width = `${percentage}%`;
+
+      if (percentage < 39) {
+        indicatorBar.className = "bar critical";
+      } else if (percentage < 65) {
+        indicatorBar.className = "bar warning";
+      } else {
+        indicatorBar.className = "bar safe";
+      }
+    }
+
+    function calculateFontSize() {
+      if (passwordLength > 20) {
+        inputElement.style.fontSize = "2rem";
+      } else if (passwordLength > 35) {
+        inputElement.style.fontSize = "1rem";
+      } else {
+        inputElement.style.fontSize = "3rem";
+      }
     }
 
     function copyToClipboard() {
@@ -136,6 +167,7 @@
       document.querySelector("#password-length-text").textContent = passwordLength;
 
       generatePassword()
+      calculateFontSize()
     })
 
     uppercaseCheck.addEventListener("input", generatePassword)

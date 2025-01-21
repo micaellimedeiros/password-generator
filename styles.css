@@ -74,6 +74,7 @@ main {
 .password .text input {
   font-family: "Inconsolata", serif;
   font-size: 3rem;
+  font-weight: bold;
   width: 100%;
   height: 52px;
 
@@ -107,8 +108,8 @@ main {
 
 .security .bar {
   height: 100%;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .security .bar.completed {
