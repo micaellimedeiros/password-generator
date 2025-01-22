@@ -6,4 +6,6 @@ The password includes uppercase letters, lowercase letters, digits, and special 
 - @param {number} length - The length of the password to be generated.
 - @returns {string} - A randomly generated password.
 
+- https://github.com/micaellimedeiros/password-generator
+
 ![image](https://github.com/user-attachments/assets/6cf4cc8a-6765-4c9d-a7e7-a0fa5e000876)
