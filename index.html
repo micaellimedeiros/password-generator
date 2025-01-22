@@ -20,7 +20,7 @@
   <main>
     <section class="hero">
       <h1 class="title">Password Generator</h1>
-      <p class="subtitle">Utilize nosso gerador online para criar uma senha forte e segura.</p>
+      <p class="subtitle">Use our online generator to create a strong and secure password.</p>
     </section>
 
     <section class="box">
@@ -46,31 +46,32 @@
     </section>
 
     <section class="box customize">
-      <h3 class="title">Personalizar</h3>
+      <h3 class="title">Customize</h3>
 
       <div class="actions">
         <div class="password-length">
-          <p>Tamanho:
+          <p>Size:
             <span id="password-length-text">16</span>
           </p>
+
           <input type="range" class="slider" id="length" name="length" min="8" max="64" value="16">
         </div>
 
         <div class="config">
           <label class="checkbox-container">
-            <span class="text">Maiúsculas</span>
+            <span class="text">Uppercase</span>
             <input type="checkbox" id="uppercase-check">
             <span class="checkmark"></span>
           </label>
 
           <label class="checkbox-container">
-            <span class="text">Numeros</span>
+            <span class="text">Numbers</span>
             <input type="checkbox" id="numbers-check">
             <span class="checkmark"></span>
           </label>
 
           <label class="checkbox-container">
-            <span class="text">Simbolos</span>
+            <span class="text">Symbols</span>
             <input type="checkbox" id="symbols-check">
             <span class="checkmark"></span>
           </label>
@@ -79,110 +80,11 @@
     </section>
 
     <div class="submit">
-      <button id="copy-2">Copiar senha</button>
+      <button id="copy-2">Copy password</button>
     </div>
-
   </main>
 
-  <script>
-    let passwordLength = 16;
-
-    const inputElement = document.querySelector("#password");
-    const length = document.querySelector("#length");
-
-    const uppercaseCheck = document.querySelector("#uppercase-check");
-    const numbersCheck = document.querySelector("#numbers-check");
-    const symbolsCheck = document.querySelector("#symbols-check");
-
-    const indicatorBar = document.querySelector("#indicator-bar");
-
-    function generatePassword() {
-      let password = "";
-      let chars = 'abcdefghjklmnpqrstuvwxyz';
-
-      const uppercaseChars = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
-      const numbersChars = '123456789';
-      const symbolsChars = '!@#$%&*';
-
-      if (uppercaseCheck.checked) {
-        chars += uppercaseChars;
-      }
-
-      if (numbersCheck.checked) {
-        chars += numbersChars;
-      }
-
-      if (symbolsCheck.checked) {
-        chars += symbolsChars;
-      }
-
-      for (let i = 0; i < passwordLength; i++) {
-        const randomNumber = Math.floor(Math.random() * chars.length);
-
-        password += chars.substring(randomNumber, randomNumber + 1)
-      }
-
-      inputElement.value = password;
-      calculateQuality()
-    }
-
-    function calculateQuality() {
-      const percentage = Math.round(
-        (passwordLength / 64) * 25 +
-        (uppercaseCheck.checked ? 15 : 0) +
-        (numbersCheck.checked ? 25 : 0) +
-        (symbolsCheck.checked ? 35 : 0)
-      );
-
-      indicatorBar.style.width = `${percentage}%`;
-
-      if (percentage < 39) {
-        indicatorBar.className = "bar critical";
-      } else if (percentage < 65) {
-        indicatorBar.className = "bar warning";
-      } else {
-        indicatorBar.className = "bar safe";
-      }
-    }
-
-    function calculateFontSize() {
-      if (passwordLength > 20) {
-        inputElement.style.fontSize = "2rem";
-      } else if (passwordLength > 35) {
-        inputElement.style.fontSize = "1rem";
-      } else {
-        inputElement.style.fontSize = "3rem";
-      }
-    }
-
-    function copyToClipboard() {
-      navigator.clipboard.writeText(inputElement.value);
-    }
-
-    function refreshPassword() {
-      generatePassword()
-      calculateFontSize()
-    }
-
-    document.querySelector("#copy-1").addEventListener("click", copyToClipboard)
-    document.querySelector("#copy-2").addEventListener("click", copyToClipboard)
-
-    document.querySelector("#refresh").addEventListener("click", refreshPassword)
-
-    length.addEventListener("input", function () {
-      passwordLength = length.value;
-      document.querySelector("#password-length-text").textContent = passwordLength;
-
-      generatePassword()
-      calculateFontSize()
-    })
-
-    uppercaseCheck.addEventListener("input", generatePassword)
-    numbersCheck.addEventListener("input", generatePassword)
-    symbolsCheck.addEventListener("input", generatePassword)
-
-    generatePassword()
-  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
